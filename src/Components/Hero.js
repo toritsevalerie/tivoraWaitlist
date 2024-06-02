@@ -11,11 +11,29 @@ const Hero = () => {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault(); // prevents refresh of page
+    if (!name || !email) {
+      setError("Both name and email are required.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    // Reset the error message if validation passes
+    setError("");
     setThankYouMessageVisible(!isThankYouMessageVisible);
     setFormVisible(!isFormVisible);
+
+    // Clear form fields
+    setName("");
+    setEmail("");
   };
 
   return (
@@ -45,6 +63,7 @@ const Hero = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+              {error && <p style={{ color: "red" }}>{error}</p>}
               <div>
                 <button type="submit">Done</button>
               </div>
