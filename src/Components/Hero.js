@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { ref, push } from "firebase/database";
+import { database } from "./firebaseConfig.js";
 
 const Hero = () => {
   const [isFormVisible, setFormVisible] = useState(false);
@@ -13,7 +15,7 @@ const Hero = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // prevents refresh of page
     if (!name || !email) {
       setError("Both name and email are required.");
@@ -28,12 +30,26 @@ const Hero = () => {
 
     // Reset the error message if validation passes
     setError("");
-    setThankYouMessageVisible(!isThankYouMessageVisible);
-    setFormVisible(!isFormVisible);
+    try {
+      // Reference to your database
+      const waitlistRef = ref(database, "waitlist");
 
-    // Clear form fields
-    setName("");
-    setEmail("");
+      // Push the new waitlist entry
+      await push(waitlistRef, {
+        name,
+        email,
+      });
+
+      setThankYouMessageVisible(!isThankYouMessageVisible);
+      setFormVisible(!isFormVisible);
+
+      // Clear form fields
+      setName("");
+      setEmail("");
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      setError("There was an error submitting the form. Please try again.");
+    }
   };
 
   return (
@@ -50,14 +66,16 @@ const Hero = () => {
             <img src="" alt="" />
           </button>
           {isFormVisible && (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} method="">
               <input
+                autoComplete="off"
                 type="text"
                 placeholder="Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
               <input
+                autoComplete="off"
                 type="text"
                 placeholder="Email"
                 value={email}
