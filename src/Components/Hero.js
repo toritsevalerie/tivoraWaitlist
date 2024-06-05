@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { ref, push } from "firebase/database";
 import { database } from "./firebaseConfig.js";
+import "../Styles/Hero.scss";
+import arrowIcon from "../assets/arrowicon.svg";
 
 const Hero = () => {
   const [isFormVisible, setFormVisible] = useState(false);
@@ -54,36 +56,49 @@ const Hero = () => {
 
   return (
     <div>
-      <div>
-        <h1>Eco-friendly packaging & branding solutions made simple!</h1>
+      <div className="heroContainer">
+        <h1>
+          Eco-friendly <br />
+          packaging & branding <br />
+          solutions made
+          <br />
+          simple!
+        </h1>
         <p>
-          Design, customize & order unique packaging & branding solutions that
-          align with your brand’s identity — delivered to your doorstep.
+          Design, customize & order unique packaging & branding <br />
+          solutions that align with your brand’s identity — delivered to your
+          doorstep.
         </p>
         <div>
           <button onClick={handleWaitlistClick}>
-            <div>Join Waitlist</div>
-            <img src="" alt="" />
+            <div className="joinWaitlistContainer">
+              <p>Join Waitlist</p>
+              <img src={arrowIcon} alt="arrow icon" />
+            </div>
           </button>
           {isFormVisible && (
             <form onSubmit={handleSubmit} method="">
-              <input
-                autoComplete="off"
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <input
-                autoComplete="off"
-                type="text"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <div className="inputContainer">
+                <input
+                  className="nameField"
+                  autoComplete="off"
+                  type="text"
+                  placeholder="  Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <input
+                  className="emailField"
+                  autoComplete="off"
+                  type="text"
+                  placeholder="  Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
               {error && <p style={{ color: "red" }}>{error}</p>}
               <div>
-                <button type="submit">Done</button>
+                <button className="submitButton" type="submit">Done</button>
               </div>
             </form>
           )}

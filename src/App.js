@@ -1,6 +1,7 @@
 
 import Hero from "./Components/Hero";
 import Header from "./Components/Header";
+import "./Styles/main.scss"
 import "./App.css";
 
 function App() {

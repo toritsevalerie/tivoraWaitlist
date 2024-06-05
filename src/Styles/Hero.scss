@@ -1,0 +1,54 @@
+.heroContainer {
+  margin-top: 30px;
+  margin-left: 86px;
+
+  h1 {
+    font-size: 55px;
+  }
+  p {
+    font-size: 22px;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  button {
+    margin-top: 25px;
+    width: 248px;
+    height: 65px;
+    border-radius: 40px;
+    border: 1px solid black;
+    background-color: #2e4846;
+    color: white;
+    font-weight: bold;
+    .joinWaitlistContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      p {
+        margin-top: 0px;
+        font-size: 18px;
+        margin-right: 12px;
+      }
+    }
+  }
+  form {
+    .inputContainer {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+      .nameField,
+      .emailField {
+        border: 1px solid black;
+        border-radius: 11px;
+        height: 50px;
+        width: 400px;
+      }
+    }
+    .submitButton {
+      background-color: #e092b7;
+      font-size: 18px;
+      width: 100px;
+      border-radius: 10px;
+      margin-bottom: 80px;
+    }
+  }
+}
