@@ -52,3 +52,42 @@
     }
   }
 }
+
+@media (max-width: 930px) {
+  .heroContainer {
+    text-align: center;
+    margin-left: 0px;
+    form {
+      .inputContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
+@media (max-width: 700px) {
+  .heroContainer {
+    p {
+      margin: 0px 10px 0px 10px;
+    }
+  }
+}
+@media (max-width: 400px) {
+  .heroContainer {
+    p {
+      margin-top: 20px;
+    }
+    form {
+      .inputContainer {
+        margin-right: 15px;
+        margin-left: 15px;
+        .emailField,
+        .nameField {
+          width: 280px;
+        }
+      }
+    }
+  }
+}
