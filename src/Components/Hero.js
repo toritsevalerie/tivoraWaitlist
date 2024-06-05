@@ -83,7 +83,7 @@ const Hero = () => {
                   className="nameField"
                   autoComplete="off"
                   type="text"
-                  placeholder="  Name"
+                  placeholder=" Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -91,7 +91,7 @@ const Hero = () => {
                   className="emailField"
                   autoComplete="off"
                   type="text"
-                  placeholder="  Email"
+                  placeholder=" Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
